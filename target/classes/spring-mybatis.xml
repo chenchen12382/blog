@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation=" 
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- 引入jdbc.properties属性文件方便数据源的配置 -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+	 
+	<!-- ========================================配置数据源========================================= -->
+	<!-- 配置数据源 -->
+     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">   
+        <property name="poolProperties"> 
+            <bean class="org.apache.tomcat.jdbc.pool.PoolProperties"> 
+                <property name="driverClassName" value="${JDBC.driver}"/>
+                <property name="url" value="${JDBC.url}"/>
+                <property name="username" value="${JDBC.username}"/>
+                <property name="password" value="${JDBC.password}"/>
+                <property name="jmxEnabled" value="true"/> 
+                <property name="testWhileIdle" value="true"/> 
+                <property name="testOnBorrow" value="true"/>   
+                <property name="testOnReturn" value="false"/>   
+                <property name="validationInterval" value="30000"/>  
+                <property name="validationQuery" value="SELECT 1"/>   
+                <property name="timeBetweenEvictionRunsMillis" value="30000"/>   
+                <property name="maxActive" value="200"/>   
+                <property name="initialSize" value="10"/>   
+                <property name="maxWait" value="30000"/>   
+                <property name="minEvictableIdleTimeMillis" value="30000"/>   
+                <property name="minIdle" value="10"/>   
+                <property name="logAbandoned" value="false"/>   
+                <property name="removeAbandoned" value="true"/>   
+                <property name="removeAbandonedTimeout" value="60"/> 
+                <property name="jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>   
+            </bean>   
+        </property>   
+    </bean>
+    
+    <!-- ========================================事物配置========================================= -->
+    <!-- 指定事物管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource"></property>  
+    </bean>
+    
+    <!-- 设置事物增强 -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">  
+        <tx:attributes>  
+            <tx:method name="get*" read-only="true" />  
+            <tx:method name="find*" read-only="true" />  
+            <tx:method name="query*" read-only="true" />  
+            <tx:method name="load*" read-only="true" />  
+            <tx:method name="add*" rollback-for="Exception"/>  
+            <tx:method name="insert*" rollback-for="Exception" />  
+            <tx:method name="update*" rollback-for="Exception" />  
+            <tx:method name="delete*" rollback-for="Exception" />  
+        </tx:attributes>  
+    </tx:advice>  
+      
+    <!-- 作用Shcema的方式配置事务, 这里是把事务设置到了service层 这里就用到了spring aop-->  
+    <aop:config>  
+        <aop:pointcut id="servicePointcut" expression="execution(* com.chenchen.service.*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>  
+    </aop:config>  
+    
+    <!-- 基于注解管理事物 就是在类名前加上@Transactional-->
+    <tx:annotation-driven transaction-manager="txManager"/> 
+    
+    <!-- ========================================针对mybatis的配置项============================== -->
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<!-- mybatis配置文件的路径 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 自动扫描com/chenchen/crm/mapper目录下的所有SQL映射的xml文件, 省掉mybatis.xml里的手工配置
+        value="classpath:com/chenchen/crm/mapper/*.xml"指的是classpath(类路径)下com.chenchen.crm.mapper包中的所有xml文件
+        UserMapper.xml位于com.chenchen.crm.mapper包下，这样UserMapper.xml就可以被自动扫描
+         -->
+      	<property name="mapperLocations" value="classpath:com/chenchen/mapper/*.xml" />
+    </bean>
+    
+    <!-- 配置扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描com.chenchen.crm.dao这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.chenchen.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+	
+</beans>
+
+

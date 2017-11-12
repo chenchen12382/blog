@@ -1,0 +1,24 @@
+<!-- 
+<!DOCTYPE configuration    
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-config.dtd"> -->
+<!DOCTYPE configuration    
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
+    "D://mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<package name="com.chenchen.model"/>
+	</typeAliases>
+	
+	<plugins>
+		<!-- 分页插件配置 -->
+		<plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+           <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+    	</plugin>
+	</plugins>
+</configuration>
