@@ -54,4 +54,17 @@ public class UserService {
     }
 
 
+    /**
+     * 获取登录用户信息
+     * @param userId
+     * @return
+     */
+    public UserLoginIdentity findLoginUser(Integer userId) {
+        if (userId == null || userId < 1) {
+            throw new ParamException(100, "请登录");
+        }
+        User user = userDao.findById(userId);
+        UserLoginIdentity userLoginIdentity = buildLoginIdentity(user);
+        return userLoginIdentity;
+    }
 }

@@ -11,4 +11,7 @@ public interface UserDao {
     @Select("select id, user_name, password, true_name, email, phone from t_user "
             + "where user_name = #{userName} and is_valid = 1")
     User findByUserName(@Param(value="userName")String userName);
+
+    @Select("select id, user_name, password, true_name, email, phone from t_user where id = #{id}")
+    User findById(@Param("id") Integer userId);
 }
