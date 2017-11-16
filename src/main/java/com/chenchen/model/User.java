@@ -11,11 +11,11 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class User extends BaseModel {
 	
-	private String userName;
-	private String password;
-	private String trueName;
-	private String email;
-	private String phone;
+	private String userName; //用户名
+	private String password; //密码
+	private String nickName; //昵称
+	private String mood;  //签名
+	private String img;  //头像
 //	private Integer[] roleIds;
 //	private List<RoleVO> roles;
 	
@@ -31,46 +31,28 @@ public class User extends BaseModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getTrueName() {
-		return trueName;
-	}
-	public void setTrueName(String trueName) {
-		this.trueName = trueName;
+
+	public String getNickName() {
+		return nickName;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getMood() {
+		return mood;
 	}
 
-	public String getPhone() {
-		return phone;
+	public void setMood(String mood) {
+		this.mood = mood;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+	public String getImg() {
+		return img;
 	}
-//	public Integer[] getRoleIds() {
-//		if (roles != null && roles.size() > 0) { // 给roleIds赋值
-//			List<Integer> roleIds = new ArrayList<>();
-//			for (RoleVO roleVO : roles) {
-//				roleIds.add(roleVO.getId());
-//			}
-//			this.roleIds = roleIds.toArray(new Integer[]{});
-//		}
-//		return roleIds;
-//	}
-//	public void setRoleIds(Integer[] roleIds) {
-//		this.roleIds = roleIds;
-//	}
-//	public List<RoleVO> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<RoleVO> roles) {
-//		this.roles = roles;
-//	}
-	
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 }

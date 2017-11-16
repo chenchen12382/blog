@@ -48,7 +48,7 @@ public class UserService {
     private static UserLoginIdentity buildLoginIdentity(User user) {
         UserLoginIdentity userLoginIdentity = new UserLoginIdentity();
         userLoginIdentity.setUserIdString(UserIDBase64.encoderUserID(user.getId()));
-        userLoginIdentity.setRealName(user.getTrueName());
+        userLoginIdentity.setRealName(user.getNickName());
         userLoginIdentity.setUserName(user.getUserName());
         return userLoginIdentity;
     }
@@ -59,12 +59,12 @@ public class UserService {
      * @param userId
      * @return
      */
-    public UserLoginIdentity findLoginUser(Integer userId) {
+    public User findLoginUser(Integer userId) {
         if (userId == null || userId < 1) {
             throw new ParamException(100, "请登录");
         }
         User user = userDao.findById(userId);
-        UserLoginIdentity userLoginIdentity = buildLoginIdentity(user);
-        return userLoginIdentity;
+//        UserLoginIdentity userLoginIdentity = buildLoginIdentity(user);
+        return user;
     }
 }

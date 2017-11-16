@@ -1,6 +1,7 @@
 package com.chenchen.controller;
 
 import com.chenchen.base.BaseController;
+import com.chenchen.model.User;
 import com.chenchen.service.UserService;
 import com.chenchen.utils.LoginUserUtil;
 import com.chenchen.vo.UserLoginIdentity;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController extends BaseController {
@@ -23,11 +25,12 @@ public class IndexController extends BaseController {
 	}
 
 	@RequestMapping("main")
-	public String main(Model model, HttpServletRequest request) {
+	public String main(HttpServletRequest request) {
 		// 获取登录用户的信息
 		Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
-		UserLoginIdentity userLoginIdentity = userService.findLoginUser(userId);
-		model.addAttribute("currentUser", userLoginIdentity);
+		User user = userService.findLoginUser(userId);
+//		session.addAttribute("user", user);
+		request.getSession().setAttribute("user",user);
 		return "main";
 	}
 	

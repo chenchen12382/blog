@@ -45,7 +45,7 @@
   </footer>
 </div>
 <script src="${ctx}/js/index.js"></script>
-<#include "include/common.footer.ftl" >
+<#include "include/common.title.ftl" >
 
 
 </body>
