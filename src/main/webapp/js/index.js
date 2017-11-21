@@ -26,7 +26,7 @@ $(document).ready(function() {
 				$.cookie("userIdString", resp.result.userIdString);
 				$.cookie("userName", resp.result.userName);
 				$.cookie("realName", resp.result.realName);
-				window.location.href = "main";
+				window.location.href = ctx+"main";
 			} else { // 失败
 				alert(resp.resultMessage);
 			}
