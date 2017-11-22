@@ -47,7 +47,9 @@
         var editor = new E('#editor')
         // 或者 var editor = new E( document.getElementById('#editor') )
 //        editor.customConfig.uploadImgShowBase64 = true;
-        editor.customConfig.uploadImgServer = '/upload'
+        editor.customConfig.uploadImgServer = '/article/uploadImg';
+        editor.customConfig.uploadFileName = 'uploadImg';
+
         editor.create()
 
         document.getElementById('btn').addEventListener('click', function () {
