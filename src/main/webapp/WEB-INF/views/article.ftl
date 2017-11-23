@@ -24,7 +24,7 @@
 
                   <div class="am-form-group">
                       <label for="doc-ipt-pwd-1">文章简介</label>
-                      <input type="text" class="" id="doc-ipt-pwd-1" placeholder="文章简介">
+                      <input type="text" id="intro" class="" id="doc-ipt-pwd-1" placeholder="文章简介">
                   </div>
                   <div>
                       <label>正文</label>
@@ -32,7 +32,7 @@
                   </div>
                   <div id="editor">
 
-                      <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+                      <#--<p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>-->
                   </div>
 
                   <p><button type="button" class="am-btn am-btn-default" id="btn">提交</button></p>
@@ -54,7 +54,21 @@
 
         document.getElementById('btn').addEventListener('click', function () {
             // 读取 html
-            alert(editor.txt.html())
+//            alert(editor.txt.html())
+            var title=$("#title").val();
+            var intro=$("#intro").val();
+            var content = editor.txt.html();
+            var data = {"title":title,"intro":intro,"content":content}
+
+            $.post("insert",data,function(result){
+                if(result.resultCode==1){
+                    alert("文章上传成功")
+                }else {
+                    alert("提交失败")
+                }
+            });
+
+
         }, false)
     </script>
 

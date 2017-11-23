@@ -27,7 +27,7 @@ public class ArticleService {
             throw new ParamException("图片为空!");
         }
 
-        String path = "d:/upload";
+        String path = request.getSession( ).getServletContext( ).getRealPath( "/" )+"/upload";
 
 //        System.out.println(path);
         String time=System.currentTimeMillis()+"";
@@ -48,7 +48,8 @@ public class ArticleService {
         Map<String,Object> result = new HashMap<>();
         result.put("errno",0);
         List<String> paths = new ArrayList<>();
-        paths.add(targetFile.getPath());
+//        String bathPath =  request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        paths.add(request.getContextPath()+"/upload/"+fileName);
         result.put("data",paths);
 
         return result;
