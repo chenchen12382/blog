@@ -15,7 +15,7 @@
       <article class="am-article blog-article-p">
           <form class="am-form">
               <fieldset>
-                  <legend>表单标题</legend>
+                  <h2 align="center">容我写一篇文章先</h2>
 
                   <div class="am-form-group">
                       <label for="doc-ipt-email-1">文章标题</label>
@@ -26,6 +26,49 @@
                       <label for="doc-ipt-pwd-1">文章简介</label>
                       <input type="text" id="intro" class="" id="doc-ipt-pwd-1" placeholder="文章简介">
                   </div>
+                  <div class="am-form-group " STYLE=" width:200px;" >
+                      <label for="doc-select-1 " >TAG</label>
+                      <select multiple data-am-selected="{maxHeight: 100}" id="s_tag">
+                      <#if tags?has_content >
+                          <#list tags as tag >
+                              <option value=${tag.id}>${tag.typeName}</option>
+                          </#list>
+                      </#if>
+                         <#--<option value="a">Apple</option>-->
+                          <#--<option valu e="b" selected>Banana</option>-->
+                          <#--<option value="o">Orange</option>-->
+                          <#--<option value="m" selected>Mango</option>-->
+                      </select>
+                      <span class="am-form-caret"></span>
+                  </div>
+                  <hr />
+                  <button type="button" class="am-btn am-btn-secondary am-round" id="create_tab">新增标签</button>
+                  <br/>
+                  <hr />
+                  <div class="am-btn-group" data-am-button>
+                  <#if tags?has_content >
+                      <#list tags as tag >
+                          <label class="am-btn am-btn-primary">
+                              <input type="checkbox" name="doc-js-btn" value=${tag.typeName}> ${tag.typeName}
+                          </label>
+                          <#--<option value=${tag.typeName}>${tag.typeName}</option>-->
+                      </#list>
+                  </#if>
+                      <#--<label class="am-btn am-btn-primary">-->
+                          <#--<input type="checkbox" name="doc-js-btn" value="苹果"> 苹果-->
+                      <#--</label>-->
+                      <#--<label class="am-btn am-btn-primary">-->
+                          <#--<input type="checkbox" name="doc-js-btn" value="橘子"> 橘子-->
+                      <#--</label>-->
+                      <#--<label class="am-btn am-btn-primary">-->
+                          <#--<input type="checkbox" name="doc-js-btn" value="香蕉"> 香蕉-->
+                      <#--</label>-->
+                  </div>&nbsp;&nbsp;&nbsp;
+                  <button type="button" class="am-btn am-btn-danger am-round" id="delete_tag">删除标签</button>
+                  <hr />
+                  <br/>
+                  <br/>
+                  <br/>
                   <div>
                       <label>正文</label>
 
@@ -36,6 +79,36 @@
                   </div>
 
                   <p><button type="button" class="am-btn am-btn-default" id="btn">提交</button></p>
+
+
+                  <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+                      <div class="am-modal-dialog">
+                          <div class="am-modal-hd">新增标签</div>
+                          <div class="am-modal-bd">
+
+                              <input type="text" class="am-modal-prompt-input" id="tag_input">
+                          </div>
+                          <div class="am-modal-footer">
+                              <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                              <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+                      <div class="am-modal-dialog">
+                          <div class="am-modal-hd">Amaze UI</div>
+                          <div class="am-modal-bd">
+                              你，确定要删除这条记录吗？
+                          </div>
+                          <div class="am-modal-footer">
+                              <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                              <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                          </div>
+                      </div>
+                  </div>
+
+
               </fieldset>
           </form>
       </article>
@@ -58,18 +131,27 @@
             var title=$("#title").val();
             var intro=$("#intro").val();
             var content = editor.txt.html();
-            var data = {"title":title,"intro":intro,"content":content}
+            if($("#s_tag").val()!=null){
+                var tags = $("#s_tag").val().toString();
+            }else {
+                alert("请选择标签");
+                return ;
+            }
+            var data = {"title":title,"intro":intro,"content":content,"typeId":tags}
 
             $.post("insert",data,function(result){
                 if(result.resultCode==1){
-                    alert("文章上传成功")
+//                    alert("文章上传成功");
+                    window.location.href=ctx+"main";
                 }else {
-                    alert("提交失败")
+                    alert(result.resultMessage);
                 }
             });
 
 
         }, false)
+
+
     </script>
 
 <#include "include/common.right.ftl">
@@ -78,4 +160,5 @@
 
 
 </body>
+<script type="text/javascript" src="${ctx}/js/article.js"></script>
 </html>

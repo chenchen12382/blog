@@ -1,7 +1,16 @@
 package com.chenchen.service;
 
+import com.chenchen.base.AssertUtil;
+import com.chenchen.dao.ArticleDao;
+import com.chenchen.dao.UserDao;
 import com.chenchen.exception.ParamException;
+import com.chenchen.model.Article;
+import com.chenchen.model.Tag;
 import com.chenchen.utils.CookieUtil;
+import com.chenchen.utils.MD5Util;
+import com.chenchen.utils.UserIDBase64;
+import org.omg.CORBA.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +26,12 @@ import java.util.Map;
  */
 @Service
 public class ArticleService {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private ArticleDao articleDao;
 
     public Map<String, Object> uploadImg(MultipartFile file, HttpServletRequest request) {
 //        String userName= CookieUtil.getCookieValue(request,"userName");
@@ -53,6 +68,81 @@ public class ArticleService {
         result.put("data",paths);
 
         return result;
+
+    }
+
+    /**
+     * 插入标签
+     * @param tag
+     * @param request
+     */
+    public void insertTag(Tag tag, HttpServletRequest request) {
+        AssertUtil.isNotEmpty(tag.getTypeName(),"标签名不能为空！");
+        Integer tags=articleDao.findByTagName(tag.getTypeName());
+        if(tags!=0){
+            throw new ParamException("标签已存在");
+        }
+//       String userId= CookieUtil.getCookieValue(request,"userIdString");
+        Integer userId = getUserID(request);
+        tag.setUserId(userId);
+//        String userId=CookieUtil.getCookieValue(request,"userIdString");
+//        tag.setUserId(UserIDBase64.decoderUserID(userId));
+        //插入tag
+        articleDao.insertTag(tag);
+
+    }
+
+    /**
+     * 查询所有标签遍历到前台
+     * @return
+     * @param request
+     */
+    public List<Tag> selectAllTag(HttpServletRequest request) {
+//        Integer userId=UserIDBase64.decoderUserID(CookieUtil.getCookieValue(request,"userIdString"));
+        Integer userId = getUserID(request);
+        List<Tag> tags= articleDao.selectAllTag(userId);
+        return tags;
+    }
+
+    /**
+     * 批量删除
+     * @param tags
+     * @param request
+     */
+    public void deleteBatch(String tags, HttpServletRequest request) {
+        AssertUtil.isNotEmpty(tags,"请选择标签删除");
+        Integer userId = getUserID(request);
+        String tag = tags.substring(0,tags.length()-1);
+        String[] typeNames= tag.split(",");
+        try {
+            for (int i=0;i<typeNames.length;i++){
+                articleDao.deleteBatch(typeNames[i],userId);
+            }
+        }catch (RuntimeException e){
+
+            throw new ParamException("删除出错！");
+        }
+
+
+//        articleDao.deleteBatch(tag,userId);
+    }
+
+    public Integer getUserID(HttpServletRequest request){
+        Integer userId = UserIDBase64.decoderUserID(CookieUtil.getCookieValue(request,"userIdString"));
+        return userId;
+    }
+
+    /**
+     * 插入文章
+     * @param article
+     */
+    public void insert(Article article) {
+        AssertUtil.isNotEmpty(article.getTitle(),"请输入标题");
+        AssertUtil.isNotEmpty(article.getIntro(),"请填写简介");
+        AssertUtil.isNotEmpty(article.getContent(),"请填写正文");
+        AssertUtil.isNotEmpty(article.getTypeId(),"请选择标签");
+
+        articleDao.insert(article);
 
     }
 }
