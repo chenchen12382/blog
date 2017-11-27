@@ -11,6 +11,7 @@ public class Article extends BaseModel{
     private String intro;
     private String content;
     private String typeId;
+    private String img;
 
     public String getTitle() {
         return title;
@@ -42,5 +43,13 @@ public class Article extends BaseModel{
 
     public void setTypeId(String typeId) {
         this.typeId = typeId;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

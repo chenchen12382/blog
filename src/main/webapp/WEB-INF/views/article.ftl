@@ -16,10 +16,11 @@
           <form class="am-form">
               <fieldset>
                   <h2 align="center">容我写一篇文章先</h2>
-
+                  <input type="hidden" class="" id="img" name="img"/>
                   <div class="am-form-group">
                       <label for="doc-ipt-email-1">文章标题</label>
                       <input type="text" class="" id="title" placeholder="标题">
+
                   </div>
 
                   <div class="am-form-group">
@@ -122,8 +123,20 @@
 //        editor.customConfig.uploadImgShowBase64 = true;
         editor.customConfig.uploadImgServer = '/article/uploadImg';
         editor.customConfig.uploadFileName = 'uploadImg';
+        editor.customConfig.uploadImgHooks = {
+            success: function (xhr, editor, result) {
+                // 图片上传并返回结果，图片插入成功之后触发
+                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+               var URL= result.data[0];
+               console.log(URL);
+               var img = $("#img").val();
+               if(img==""){
+                   $("#img").val(URL);
+               }
+            }
+        }
 
-        editor.create()
+        editor.create();
 
         document.getElementById('btn').addEventListener('click', function () {
             // 读取 html
@@ -131,17 +144,18 @@
             var title=$("#title").val();
             var intro=$("#intro").val();
             var content = editor.txt.html();
+            var img = $("#img").val();
             if($("#s_tag").val()!=null){
                 var tags = $("#s_tag").val().toString();
             }else {
                 alert("请选择标签");
                 return ;
             }
-            var data = {"title":title,"intro":intro,"content":content,"typeId":tags}
+            var data = {"title":title,"intro":intro,"content":content,"typeId":tags,"img":img}
 
             $.post("insert",data,function(result){
                 if(result.resultCode==1){
-//                    alert("文章上传成功");
+                    alert("文章上传成功");
                     window.location.href=ctx+"main";
                 }else {
                     alert(result.resultMessage);

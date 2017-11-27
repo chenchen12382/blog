@@ -118,11 +118,16 @@
                 <p><a href="" class="blog-continue">continue reading</a></p>
             </div>
         </article>
-        
-        <ul class="am-pagination">
-  <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
-  <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
-</ul>
+
+        <ul class="am-pagination am-pagination-centered">
+            <li class="am-disabled"><a href="#">&laquo;</a></li>
+            <li class="am-active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
     </div>
     <#--右侧个人介绍-->
 <#include "include/common.right.ftl">

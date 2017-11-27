@@ -25,12 +25,16 @@ public class IndexController extends BaseController {
 	}
 
 	@RequestMapping("main")
-	public String main(HttpServletRequest request) {
+	public String main(HttpServletRequest request,Model model) {
 		// 获取登录用户的信息
 		Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
 		User user = userService.findLoginUser(userId);
 //		session.addAttribute("user", user);
 		request.getSession().setAttribute("user",user);
+
+		//文章简略信息
+
+
 		return "main";
 	}
 	

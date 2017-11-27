@@ -18,19 +18,36 @@ $(document).ready(function() {
 
 		var data = {"userName":userName, "password":password};
 
+        $.ajax({
+            async: false,
+            type : "POST",
+            url : "user/login",
+            data :data,
+            dataType : 'json',
+            success : function(resp) {
+                if (resp.resultCode == 1) { // 成功
+                    // 把登录后的数据存入cookie
+                    $.cookie("userIdString", resp.result.userIdString);
+                    $.cookie("userName", resp.result.userName);
+                    $.cookie("realName", resp.result.realName);
+                    window.location.href = ctx+"main";
+                } else { // 失败
+                    alert(resp.resultMessage);
+                }
+            }
+        });
 
-
-		$.post("user/login", data, function(resp) {
-			if (resp.resultCode == 1) { // 成功
-				// 把登录后的数据存入cookie
-				$.cookie("userIdString", resp.result.userIdString);
-				$.cookie("userName", resp.result.userName);
-				$.cookie("realName", resp.result.realName);
-				window.location.href = ctx+"main";
-			} else { // 失败
-				alert(resp.resultMessage);
-			}
-		});
+		// $.post("user/login", data, function(resp) {
+		// 	if (resp.resultCode == 1) { // 成功
+		// 		// 把登录后的数据存入cookie
+		// 		$.cookie("userIdString", resp.result.userIdString);
+		// 		$.cookie("userName", resp.result.userName);
+		// 		$.cookie("realName", resp.result.realName);
+		// 		window.location.href = ctx+"main";
+		// 	} else { // 失败
+		// 		alert(resp.resultMessage);
+		// 	}
+		// });
 	});
 });
 
