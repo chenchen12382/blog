@@ -1,6 +1,7 @@
 package com.chenchen.service;
 
 import com.chenchen.base.AssertUtil;
+import com.chenchen.base.BaseQuery;
 import com.chenchen.dao.ArticleDao;
 import com.chenchen.dao.UserDao;
 import com.chenchen.exception.ParamException;
@@ -9,6 +10,7 @@ import com.chenchen.model.Tag;
 import com.chenchen.utils.CookieUtil;
 import com.chenchen.utils.MD5Util;
 import com.chenchen.utils.UserIDBase64;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -143,6 +145,13 @@ public class ArticleService {
         AssertUtil.isNotEmpty(article.getTypeId(),"请选择标签");
 
         articleDao.insert(article);
+
+    }
+
+    public PageList<Article> findAllArticle(BaseQuery query) {
+        PageList<Article> articles = articleDao.findAllArticle(query,query.buildPageBounds());
+
+        return articles;
 
     }
 }

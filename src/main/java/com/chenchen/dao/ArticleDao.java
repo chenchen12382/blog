@@ -1,7 +1,10 @@
 package com.chenchen.dao;
 
+import com.chenchen.base.BaseQuery;
 import com.chenchen.model.Article;
 import com.chenchen.model.Tag;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -29,4 +32,7 @@ public interface ArticleDao {
     @Insert("insert into t_note set title=#{title},img=#{img}, intro=#{intro},content=#{content},type_id=#{typeId},create_date=now() , " +
             " update_date=now()")
     void insert(Article article);
+
+    @Select("select title,img,intro,type_id,create_date from t_note ")
+    PageList<Article> findAllArticle(BaseQuery query, PageBounds pageBounds);
 }
