@@ -115,6 +115,7 @@
       </article>
     </div>
 
+
     <script type="text/javascript" src="${ctx}/js/wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
@@ -169,6 +170,7 @@
     </script>
 
 <#include "include/common.right.ftl">
+</div>
 <!-- content end -->
 <#include "include/common.footer.ftl">
 

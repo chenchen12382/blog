@@ -48,6 +48,7 @@ public class IndexController extends BaseController {
 		PageList<Article> result = articleService.findAllArticle(query);
 //		Map<String,Object> articles=findAllArticle(query);
 		model.addAttribute("articles",result);
+		model.addAttribute("rows",result.getPaginator().getTotalCount());
 		return "main";
 	}
 
