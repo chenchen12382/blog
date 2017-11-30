@@ -33,6 +33,15 @@ public interface ArticleDao {
             " update_date=now()")
     void insert(Article article);
 
-    @Select("select title,img,intro,type_id,create_date from t_note ")
+    @Select("select id,title,img,intro,type_id,create_date from t_note ")
     PageList<Article> findAllArticle(BaseQuery query, PageBounds pageBounds);
+
+    @Select("select id,title,img,intro,type_id,content,create_date from t_note where id=#{id}")
+    Article findArticleById(@Param("id") Integer id);
+
+    @Select("SELECT id FROM t_note  WHERE id < ${id} ORDER BY id DESC  LIMIT 0,1 ")
+    Integer findPrePage(@Param("id") Integer id);
+
+    @Select("select id FROM t_note WHERE id > ${id} ORDER BY id   LIMIT 0,1")
+    Integer findNextPage(@Param("id") Integer id);
 }

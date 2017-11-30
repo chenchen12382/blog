@@ -154,4 +154,10 @@ public class ArticleService {
         return articles;
 
     }
+
+    public Article findArticleById(Integer id) {
+        AssertUtil.intIsNotEmpty(id,"请选择！");
+        Article article=articleDao.findArticleById(id);
+        return article;
+    }
 }

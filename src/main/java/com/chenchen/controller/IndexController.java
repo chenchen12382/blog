@@ -2,6 +2,7 @@ package com.chenchen.controller;
 
 import com.chenchen.base.BaseController;
 import com.chenchen.base.BaseQuery;
+import com.chenchen.dao.ArticleDao;
 import com.chenchen.model.Article;
 import com.chenchen.model.User;
 import com.chenchen.service.ArticleService;
@@ -30,6 +31,9 @@ public class IndexController extends BaseController {
 
 	@Autowired
 	private ArticleService articleService;
+
+	@Autowired
+	private ArticleDao articleDao;
 	
 	@RequestMapping("index")
 	public String index() {
@@ -52,12 +56,17 @@ public class IndexController extends BaseController {
 		return "main";
 	}
 
-//	@RequestMapping("a")
-//	@ResponseBody
-//	public Map<String,Object> findAllArticle(BaseQuery query){
-//
-//		return result;
-//	}
+	@RequestMapping("a")
+	public String findAllArticle(Integer id,Model model,BaseQuery query){
+		Article article=articleService.findArticleById(id);
+//		PageList<Article> result = articleService.findAllArticle(query);
+		Integer pre = articleDao.findPrePage(id);
+		Integer next = articleDao.findNextPage(id);
+		model.addAttribute("pre",pre);
+		model.addAttribute("next",next);
+		model.addAttribute("article",article);
+		return "ac";
+	}
 
 	
 }
