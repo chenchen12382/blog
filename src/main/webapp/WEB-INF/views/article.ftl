@@ -75,7 +75,6 @@
 
                   </div>
                   <div id="editor">
-
                       <#--<p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>-->
                   </div>
 
@@ -122,6 +121,38 @@
         var editor = new E('#editor')
         // 或者 var editor = new E( document.getElementById('#editor') )
 //        editor.customConfig.uploadImgShowBase64 = true;
+        <#--editor.customConfig.emotions = [-->
+            <#--{-->
+                <#--// tab 的标题-->
+                <#--title: 'Ac娘',-->
+                <#--// type -> 'emoji' / 'image'-->
+                <#--type: 'image',-->
+                <#--// content -> 数组-->
+                <#--content: [-->
+                    <#--<#list 1..53 as item>-->
+                        <#--{-->
+                            <#--alt: '[${item}]',-->
+                            <#--src: '${ctx}/ac/${item}.png'-->
+                        <#--},-->
+                    <#--</#list>-->
+                    <#--{-->
+                        <#--alt: '[舔屏]',-->
+                        <#--src: '${ctx}/ac/54.png'-->
+                    <#--}-->
+                <#--]-->
+            <#--},-->
+            <#--{-->
+                <#--// tab 的标题-->
+                <#--title: 'emoji',-->
+                <#--// type -> 'emoji' / 'image'-->
+                <#--type: 'emoji',-->
+                <#--// content -> 数组-->
+                <#--content: ['😀', '😃', '😄', '😁', '😆']-->
+            <#--}-->
+        <#--]-->
+
+
+
         editor.customConfig.uploadImgServer = '/article/uploadImg';
         editor.customConfig.uploadFileName = 'uploadImg';
         editor.customConfig.uploadImgHooks = {
