@@ -23,5 +23,5 @@
 <script type="text/javascript" src="${ctx}/assets/js/amazeui.js"></script>
 
 <script>
-    var ctx = "${ctx}/";
+    var ctx = "${ctx}";
 </script>

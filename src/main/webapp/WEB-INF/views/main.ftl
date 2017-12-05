@@ -70,7 +70,6 @@
     </div>
 
 
-
     <#--右侧个人介绍-->
 <#include "include/common.right.ftl">
 </div>
