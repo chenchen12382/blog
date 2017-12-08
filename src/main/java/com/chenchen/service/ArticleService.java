@@ -4,8 +4,10 @@ import com.chenchen.base.AssertUtil;
 import com.chenchen.base.BaseQuery;
 import com.chenchen.dao.ArticleDao;
 import com.chenchen.dao.UserDao;
+import com.chenchen.dto.CommentQuery;
 import com.chenchen.exception.ParamException;
 import com.chenchen.model.Article;
+import com.chenchen.model.Comment;
 import com.chenchen.model.Tag;
 import com.chenchen.utils.CookieUtil;
 import com.chenchen.utils.MD5Util;
@@ -159,5 +161,24 @@ public class ArticleService {
         AssertUtil.intIsNotEmpty(id,"请选择！");
         Article article=articleDao.findArticleById(id);
         return article;
+    }
+
+    /**
+     * 插入评论
+     * @param comment
+     */
+    public void insertComment(Comment comment) {
+
+        AssertUtil.isNotEmpty(comment.getNikeName(),"请填写昵称");
+        AssertUtil.isNotEmpty(comment.getContent(),"请填写评论");
+
+        articleDao.insertComment(comment);
+
+    }
+
+    public PageList<Comment> findCommentByAid(CommentQuery query) {
+        PageList<Comment> comments = articleDao.findCommentByAid(query,query.buildPageBounds());
+        return  comments;
+
     }
 }

@@ -2,8 +2,11 @@ package com.chenchen.controller;
 
 import com.chenchen.base.BaseController;
 import com.chenchen.base.BaseQuery;
+import com.chenchen.base.ResultInfo;
 import com.chenchen.dao.ArticleDao;
+import com.chenchen.dto.CommentQuery;
 import com.chenchen.model.Article;
+import com.chenchen.model.Comment;
 import com.chenchen.model.User;
 import com.chenchen.service.ArticleService;
 import com.chenchen.service.UserService;
@@ -53,11 +56,12 @@ public class IndexController extends BaseController {
 //		Map<String,Object> articles=findAllArticle(query);
 		model.addAttribute("articles",result);
 		model.addAttribute("page",result.getPaginator());
+
 		return "main";
 	}
 
 	@RequestMapping("a")
-	public String findAllArticle(Integer id,Model model,BaseQuery query){
+	public String findAllArticle(Integer id,Model model,CommentQuery query){
 		Article article=articleService.findArticleById(id);
 //		PageList<Article> result = articleService.findAllArticle(query);
 		Integer pre = articleDao.findPrePage(id);
@@ -65,8 +69,23 @@ public class IndexController extends BaseController {
 		model.addAttribute("pre",pre);
 		model.addAttribute("next",next);
 		model.addAttribute("article",article);
+
+		//文章评论信息
+		query.setAid(id);
+		PageList<Comment> comments = articleService.findCommentByAid(query);
+		model.addAttribute("comments",comments);
+		model.addAttribute("paginator",comments.getPaginator());
+
+
 		return "ac";
 	}
 
-	
+	@RequestMapping("comment")
+	@ResponseBody
+	public ResultInfo insertComment(Comment comment){
+		articleService.insertComment(comment);
+		return success("发表成功");
+
+	}
+
 }

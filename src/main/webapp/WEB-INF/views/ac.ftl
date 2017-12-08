@@ -57,72 +57,46 @@
         </form>
 
         <hr>
-
         <ul class="am-comments-list am-comments-list-flip">
-            <li class="am-comment">
-                <a href="#link-to-user-home">
-                    <img src="" alt="" class="am-comment-avatar" width="48" height="48"/>
-                </a>
+        <#if comments?has_content>
+            <#list comments as item>
 
-                <div class="am-comment-main">
-                    <header class="am-comment-hd">
-                        <!--<h3 class="am-comment-title">评论标题</h3>-->
-                        <div class="am-comment-meta">
-                            <a href="#link-to-user" class="am-comment-author">某人</a>
-                            评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
+                <li class="am-comment">
+                    <a href="#">
+                        <img src="" alt="" class="am-comment-avatar" width="48" height="48"/>
+                    </a>
+
+                    <div class="am-comment-main">
+                        <header class="am-comment-hd">
+                            <!--<h3 class="am-comment-title">评论标题</h3>-->
+                            <div class="am-comment-meta">
+                                <a href="#" class="am-comment-author">${item.nikeName}</a>
+                                评论于 <time datetime="${item.createDate?date}" title="${item.createDate?date}">2014-7-12 15:30</time>
+                            </div>
+                        </header>
+
+                        <div class="am-comment-bd">
+                            <p>
+                                ${item.content}
+                            </p>
                         </div>
-                    </header>
-
-                    <div class="am-comment-bd">
-                        ...
                     </div>
-                </div>
-            </li>
+                </li>
+            </#list>
+        </#if>
 
-            <li class="am-comment">
-                <a href="#link-to-user-home">
-                    <img src="" alt="" class="am-comment-avatar" width="48" height="48"/>
-                </a>
+        </ul>
 
-                <div class="am-comment-main">
-                    <header class="am-comment-hd">
-                        <!--<h3 class="am-comment-title">评论标题</h3>-->
-                        <div class="am-comment-meta">
-                            <a href="#link-to-user" class="am-comment-author">某人</a>
-                            评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12 15:30</time>
-                        </div>
-                    </header>
+        <ul class="am-pagination blog-article-margin">
+        <#if paginator.hasPrePage>
+            <li class="am-pagination-prev"><a href="${ctx}/a?id=${article.id}&page=${paginator.getPrePage()}" class="">上一页评论</a></li>
+        </#if>
 
-                    <div class="am-comment-bd">
-                        <p>
-                            那，那是一封写给南部母亲的信。我茫然站在骑楼下，我又看到永远的樱子走到街心。其实雨下得并不大，却是一生一世中最大的一场雨。而那封信是这样写的，年轻的樱子知不知道呢？
-                            <br/>
-                            <a href="">
-                                <i class="am-icon-reply"></i>
-                            </a>
-                        </p>
-                        <blockquote>
-                            妈：我打算在下个月和樱子结婚。
-                            <br/>
-                            <a href="">
-                                <i class="am-icon-reply"></i>
-                            </a>
+        <#if paginator.hasNextPage>
+            <li class="am-pagination-next"><a href="${ctx}/a?id=${article.id}&page=${paginator.getNextPage()}">下一页评论</a></li>
+        </#if>
 
-                        </blockquote>
-                        <blockquote>
-                            妈：我打算在下个月和樱子结婚。
-                            <br/>
-                            <a href="">
-                                <i class="am-icon-reply"></i>
-                            </a>
 
-                        </blockquote>
-                    </div>
-                </div>
-            </li>
-            <li class="am-comment am-comment-flip"></li>
-
-            <li class="am-comment am-comment-highlight"></li>
         </ul>
 
 
@@ -137,8 +111,10 @@
             <div class="am-modal-dialog">
                 <div class="am-modal-hd">发表评论</div>
                 <div class="am-modal-bd">
-                    来来来，吐槽点啥吧
-                    <input type="t" class="am-modal-prompt-input">
+                    <input id="nikeName" name="nikeName" type="t" class="am-modal-prompt-input" placeholder="昵称">
+                </div>
+                <div class="am-modal-bd">
+                    <input type="t" id="content" name="content" class="am-modal-prompt-input" placeholder="评论内容">
                 </div>
                 <div class="am-modal-footer">
                     <span class="am-modal-btn" data-am-modal-cancel>取消</span>

@@ -1,7 +1,9 @@
 package com.chenchen.dao;
 
 import com.chenchen.base.BaseQuery;
+import com.chenchen.dto.CommentQuery;
 import com.chenchen.model.Article;
+import com.chenchen.model.Comment;
 import com.chenchen.model.Tag;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
@@ -44,4 +46,9 @@ public interface ArticleDao {
 
     @Select("select id FROM t_note WHERE id > ${id} ORDER BY id   LIMIT 0,1")
     Integer findNextPage(@Param("id") Integer id);
+
+    @Insert("insert into t_comment (aid,nike_name,content,create_date) values (#{aid},#{nikeName},#{content},now())")
+    void insertComment(Comment comment);
+
+    PageList<Comment> findCommentByAid(CommentQuery query, PageBounds pageBounds);
 }
