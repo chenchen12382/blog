@@ -21,7 +21,9 @@
 <script type="text/javascript" src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx}/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/assets/js/amazeui.js"></script>
-
+<link rel="stylesheet" href="${ctx}/highlight/styles/default.css">
+<script src="${ctx}/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script>
     var ctx = "${ctx}";
 </script>

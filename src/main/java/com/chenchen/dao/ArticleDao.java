@@ -19,17 +19,17 @@ import java.util.List;
  */
 public interface ArticleDao {
 
-    @Insert("insert into t_note_type (type_name,user_id) values(#{typeName},#{userId})")
+    @Insert("insert into t_note_type (type_name) values(#{typeName})")
     void insertTag(Tag tag);
 
     @Select("select count(1) from t_note_type where type_name=#{typeName}")
     Integer findByTagName(@Param("typeName") String typeName);
 
-    @Select("select id,type_name from t_note_type where user_id=#{userId}")
-    List<Tag> selectAllTag(@Param("userId") Integer userId);
+    @Select("select id,type_name from t_note_type")
+    List<Tag> selectAllTag();
 
-    @Delete("DELETE FROM t_note_type WHERE type_name =#{typeName} and user_id=#{userId}")
-    void deleteBatch(@Param(value = "typeName") String typeName, @Param(value = "userId") Integer userId);
+    @Delete("DELETE FROM t_note_type WHERE type_name =#{typeName} ")
+    void deleteBatch(@Param(value = "typeName") String typeName);
 
     @Insert("insert into t_note set title=#{title},img=#{img}, intro=#{intro},content=#{content},type_id=#{typeId},create_date=now() , " +
             " update_date=now()")

@@ -43,10 +43,13 @@ public class IndexController extends BaseController {
 		return "index";
 	}
 
-	@RequestMapping("main")
+	@RequestMapping("/")
 	public String main(HttpServletRequest request,Model model,BaseQuery query) {
 		// 获取登录用户的信息
 		Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
+		if(userId==null){
+			userId=1;
+		}
 		User user = userService.findLoginUser(userId);
 //		session.addAttribute("user", user);
 		request.getSession().setAttribute("user",user);

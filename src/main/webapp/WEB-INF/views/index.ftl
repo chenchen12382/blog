@@ -25,17 +25,15 @@
       </div>      
       <br>
       <div class="am-input-group am-animation-slide-left log-animation-delay">       
-        <input type="text" id="password" class="am-form-field am-radius log-input" placeholder="密码" data-validation-message="请输入密码" required>
+        <input type="password" id="password" class="am-form-field am-radius log-input" placeholder="密码" data-validation-message="请输入密码" required>
         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
       </div>      
       <br>
-      <button type="submit" id="submitBtn" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay">登 录</button>
+      <button type="button" id="submitBtn" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay">登 录</button>
             <p class="am-animation-slide-bottom log-animation-delay"><a href="#">忘记密码?</a></p>
       <div class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
-      <p>使用第三方登录</p>
+      <p>游客登陆</p>
       <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a>
-      <a href="#" class="am-btn am-btn-success am-btn-sm"><i class="am-icon-google-plus-square am-icon-sm"></i> Google+</a>
-      <a href="#" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-stack-overflow am-icon-sm"></i> stackOverflow</a>
       </div>
     </form>
   </div>

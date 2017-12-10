@@ -40,29 +40,29 @@
                 <#if p==1>
                     <li class="am-disabled"><a href="#">上一页</a></li>
                 <#else >
-                    <li ><a href="/main?page=${p-1}">上一页</a></li>
+                    <li ><a href="/?page=${p-1}">上一页</a></li>
                 </#if>
 
                 <#if p?has_content  >
                     <#if p - 2 &gt;= 1>
-                        <li class=><a href="/main?page=${page.getPage()-2}">${page.getPage()-2}</a></li>
+                        <li class=><a href="?page=${page.getPage()-2}">${page.getPage()-2}</a></li>
                     </#if>
                     <#if page.hasPrePage>
-                        <li class=><a href="/main?page=${page.getPage()-1}">${page.getPage()-1}</a></li>
+                        <li class=><a href="?page=${page.getPage()-1}">${page.getPage()-1}</a></li>
                     </#if>
-                    <li class="am-active"><a href="/main?page=${page.getPage()}">${page.getPage()}</a></li>
+                    <li class="am-active"><a href="?page=${page.getPage()}">${page.getPage()}</a></li>
                     <#if page.hasNextPage>
-                        <li ><a href="/main?page=${page.getPage()+1}">${page.getPage()+1}</a></li>
+                        <li ><a href="?page=${page.getPage()+1}">${page.getPage()+1}</a></li>
                     </#if>
                     <#if p + 2 <= total>
-                        <li ><a href="/main?page=${page.getPage()+2}">${page.getPage()+2}</a></li>
+                        <li ><a href="?page=${page.getPage()+2}">${page.getPage()+2}</a></li>
                     </#if>
                 </#if>
 
                 <#if page.getPage()==page.getTotalPages()>
                     <li class="am-disabled"><a href="#">下一页</a></li>
                 <#else >
-                    <li><a href="/main?page=${page.getPage()+1}">下一页</a></li>
+                    <li><a href="?page=${page.getPage()+1}">下一页</a></li>
                 </#if>
             </ul>
         </div>

@@ -103,8 +103,7 @@ public class ArticleService {
      */
     public List<Tag> selectAllTag(HttpServletRequest request) {
 //        Integer userId=UserIDBase64.decoderUserID(CookieUtil.getCookieValue(request,"userIdString"));
-        Integer userId = getUserID(request);
-        List<Tag> tags= articleDao.selectAllTag(userId);
+        List<Tag> tags= articleDao.selectAllTag();
         return tags;
     }
 
@@ -120,7 +119,7 @@ public class ArticleService {
         String[] typeNames= tag.split(",");
         try {
             for (int i=0;i<typeNames.length;i++){
-                articleDao.deleteBatch(typeNames[i],userId);
+                articleDao.deleteBatch(typeNames[i]);
             }
         }catch (RuntimeException e){
 
