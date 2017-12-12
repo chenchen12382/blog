@@ -3,6 +3,16 @@
         <img width="600" src="${ctx}/images/cc.png" alt="Amaze UI Logo"/>
         <#--<h2 class="am-hide-sm-only">陈琛的个人博客</h2>-->
     </div>
+
+    <script>
+        function serchArticle() {
+            var name = $('#i_search').val();
+//            var data = {"name":name};
+
+
+
+        }
+    </script>
 </header>
 
 <hr>
@@ -28,7 +38,8 @@
         </ul>
         <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
             <div class="am-form-group">
-                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+                <input type="text" class="am-form-field am-input-sm" placeholder="搜索" id="i_search">
+                <a href="javascript:serchArticle()"><i class="am-icon-search am-icon-fw"></i></a>
             </div>
         </form>
     </div>

@@ -7,6 +7,7 @@ import com.chenchen.dao.ArticleDao;
 import com.chenchen.dto.CommentQuery;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
+import com.chenchen.model.Tag;
 import com.chenchen.model.User;
 import com.chenchen.service.ArticleService;
 import com.chenchen.service.UserService;
@@ -56,10 +57,14 @@ public class IndexController extends BaseController {
 //		//文章简略信息
 //		articleService.findAllArticle();
 		PageList<Article> result = articleService.findAllArticle(query);
+
 //		Map<String,Object> articles=findAllArticle(query);
 		model.addAttribute("articles",result);
 		model.addAttribute("page",result.getPaginator());
 
+		//查询标签
+		List<Tag> tags=articleService.selectAllTag(request);
+		model.addAttribute("tags",tags);
 		return "main";
 	}
 
