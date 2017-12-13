@@ -51,4 +51,7 @@ public interface ArticleDao {
     void insertComment(Comment comment);
 
     PageList<Comment> findCommentByAid(CommentQuery query, PageBounds pageBounds);
+
+    @Insert("insert into t_img (img,img_name,create_date,update_date) values(#{img},#{fileName},now(),now() )")
+    void insertImg(@Param("img") String img, @Param("fileName") String fileName);
 }

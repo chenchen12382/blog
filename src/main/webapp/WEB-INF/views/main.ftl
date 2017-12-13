@@ -18,7 +18,7 @@
             <#list articles as item >
                 <article class="am-g blog-entry-article">
                     <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                        <img src=${item.img?default("/images/01.jpg")} alt="" class="am-u-sm-12">
+                        <img src=${item.img?default("/images/01.jpg")} alt="" class="am-u-sm-12 "  height="200" ">
                     </div>
                     <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                         <span><a href="${ctx}/a?id=${item.id}" class="blog-color">article &nbsp;</a></span>

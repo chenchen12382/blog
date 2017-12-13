@@ -71,7 +71,9 @@ public class ArticleService {
 //        String bathPath =  request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
         paths.add(request.getContextPath()+"/upload/"+fileName);
         result.put("data",paths);
-
+        //上传成功插入数据库,用于图片库展示
+        String img = "/upload/"+fileName;
+        articleDao.insertImg(img,fileName);
         return result;
 
     }
