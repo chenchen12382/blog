@@ -2,6 +2,7 @@ package com.chenchen.dao;
 
 import com.chenchen.base.BaseQuery;
 import com.chenchen.dto.CommentQuery;
+import com.chenchen.dto.IndexQuery;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
 import com.chenchen.model.Tag;
@@ -35,8 +36,7 @@ public interface ArticleDao {
             " update_date=now()")
     void insert(Article article);
 
-    @Select("select id,title,img,intro,type_id,create_date from t_note ")
-    PageList<Article> findAllArticle(BaseQuery query, PageBounds pageBounds);
+    PageList<Article> findAllArticle(IndexQuery query, PageBounds pageBounds);
 
     @Select("select id,title,img,intro,type_id,content,create_date from t_note where id=#{id}")
     Article findArticleById(@Param("id") Integer id);

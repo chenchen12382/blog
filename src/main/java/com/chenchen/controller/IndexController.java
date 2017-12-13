@@ -5,6 +5,7 @@ import com.chenchen.base.BaseQuery;
 import com.chenchen.base.ResultInfo;
 import com.chenchen.dao.ArticleDao;
 import com.chenchen.dto.CommentQuery;
+import com.chenchen.dto.IndexQuery;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
 import com.chenchen.model.Tag;
@@ -45,7 +46,7 @@ public class IndexController extends BaseController {
 	}
 
 	@RequestMapping("/")
-	public String main(HttpServletRequest request,Model model,BaseQuery query) {
+	public String main(HttpServletRequest request,Model model,IndexQuery query) {
 		// 获取登录用户的信息
 		Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
 		if(userId==null){
@@ -64,7 +65,8 @@ public class IndexController extends BaseController {
 
 		//查询标签
 		List<Tag> tags=articleService.selectAllTag(request);
-		model.addAttribute("tags",tags);
+		request.getSession().setAttribute("rightTags",tags);
+//		model.addAttribute("rightTags",tags);
 		return "main";
 	}
 
@@ -95,5 +97,12 @@ public class IndexController extends BaseController {
 		return success("发表成功");
 
 	}
+
+	@RequestMapping("img")
+	public String imgCtrl(){
+		return "img";
+	}
+
+
 
 }

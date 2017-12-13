@@ -5,6 +5,7 @@ import com.chenchen.base.BaseQuery;
 import com.chenchen.dao.ArticleDao;
 import com.chenchen.dao.UserDao;
 import com.chenchen.dto.CommentQuery;
+import com.chenchen.dto.IndexQuery;
 import com.chenchen.exception.ParamException;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
@@ -149,7 +150,7 @@ public class ArticleService {
 
     }
 
-    public PageList<Article> findAllArticle(BaseQuery query) {
+    public PageList<Article> findAllArticle(IndexQuery query) {
         PageList<Article> articles = articleDao.findAllArticle(query,query.buildPageBounds());
 
         return articles;

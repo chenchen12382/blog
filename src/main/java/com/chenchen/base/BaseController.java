@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 public class BaseController {
-	
+
 	@ModelAttribute
 	public void preMethod(Model model, HttpServletRequest request) {
 		String contextPath = request.getContextPath();

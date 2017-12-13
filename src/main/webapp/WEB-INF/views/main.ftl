@@ -32,6 +32,8 @@
                 </article>
             </#list>
         </#if>
+
+
         </div>
         <div id="page">
         <#assign p=page.getPage()>

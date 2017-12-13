@@ -29,7 +29,7 @@
                   </div>
                   <div class="am-form-group " STYLE=" width:200px;" >
                       <label for="doc-select-1 " >TAG</label>
-                      <select multiple data-am-selected="{maxHeight: 100}" id="s_tag">
+                      <select  data-am-selected="{maxHeight: 100}" id="s_tag">
                       <#if tags?has_content >
                           <#list tags as tag >
                               <option value=${tag.id}>${tag.typeName}</option>

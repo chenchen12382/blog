@@ -8,7 +8,7 @@
         function serchArticle() {
             var name = $('#i_search').val();
 //            var data = {"name":name};
-
+            window.location.href=ctx+'?name='+name;
 
 
         }
@@ -34,7 +34,7 @@
         <#--</ul>-->
         <#--</li>-->
             <li><a href="${ctx}/article/index">写文章</a></li>
-            <li><a href="lw-img.html">个人中心</a></li>
+            <li><a href="${ctx}/img">图片库</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
             <div class="am-form-group">

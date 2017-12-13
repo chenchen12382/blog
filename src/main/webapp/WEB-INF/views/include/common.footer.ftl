@@ -32,3 +32,5 @@
         <#--</div>-->
     <#--</div>-->
         <div class="blog-text-center">© 2017-2018  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 陈琛的个人博客 </div>  </footer>
+<script src="${ctx}/assets/js/pinto.min.js"></script>
+<script src="${ctx}/assets/js/img.js"></script>

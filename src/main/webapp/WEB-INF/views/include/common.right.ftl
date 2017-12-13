@@ -1,4 +1,5 @@
 <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
+
     <div class="blog-sidebar-widget blog-bor">
         <h2 class="blog-text-center blog-title"><span>关于我</span></h2>
         <img src="${ctx}/assets/i/f14.jpg" alt="about me" class="blog-entry-img" >
@@ -9,20 +10,20 @@
     <div class="blog-sidebar-widget blog-bor">
         <h2 class="blog-text-center blog-title"><span>联系我</span></h2>
         <p>
-            <a href="https://github.com/chenchen12382"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-            <a href="tencent://QQInterLive/?Cmd=2&Uin=391313748"><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-            <a href="${ctx}/images/wx.png"><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
+            <a href="https://github.com/chenchen12382"><span class="am-icon-github am-icon-fw blog-icon" title="我的github"></span></a>
+            <a href="tencent://QQInterLive/?Cmd=2&Uin=391313748"><span class="am-icon-qq am-icon-fw am-primary blog-icon" title="加我好友呗"></span></a>
+            <a href="${ctx}/images/wx.png"><span class="am-icon-weixin am-icon-fw blog-icon" title="微信扫一扫"></span></a>
         </p>
     </div>
     <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
         <h2 class="blog-title"><span>标签</span></h2>
         <div class="am-u-sm-12 blog-clear-padding">
-            <a href="" class="blog-tag">amaze</a>
-            <a href="" class="blog-tag">妹纸 UI</a>
-            <a href="" class="blog-tag">HTML5</a>
-            <a href="" class="blog-tag">这是标签</a>
-            <a href="" class="blog-tag">Impossible</a>
-            <a href="" class="blog-tag">开源前端框架</a>
+        <#if rightTags?has_content>
+            <#list rightTags as tag>
+                <a href="${ctx}/?tag=${tag.getTypeName()}" class="blog-tag">${tag.getTypeName()}</a>
+            </#list>
+        </#if>
+
         </div>
     </div>
     <div class="blog-sidebar-widget blog-bor">

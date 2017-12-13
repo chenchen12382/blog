@@ -1,11 +1,11 @@
 $(function() {
     $('#doc-prompt-toggle').on('click', function() {
-        var userName=$.cookie('userName');
-        if(userName==null){
-            //登陆框  ==做
-            window.location.href=ctx+'index';
-
-        }
+        // var userName=$.cookie('userName');
+        // if(userName==null){
+        //     //登陆框  ==做
+        //     window.location.href=ctx+'index';
+        //
+        // }
 
         $('#my-prompt').modal({
             relatedTarget: this,
@@ -33,16 +33,11 @@ $(function() {
                         window.location.href="a?id="+id;
                     }else {
                         alert(result.resultMessage);
-                        // $("#tag_input").val("");
+
                     }
                 });
-
-
-                alert('你输入的是：' + nikeName || '')
-            },
-            onCancel: function(e) {
-                alert('不想说!');
             }
+
         });
     });
 });
