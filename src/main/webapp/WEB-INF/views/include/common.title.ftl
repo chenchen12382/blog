@@ -5,6 +5,19 @@
     </div>
 
     <script>
+
+        function articleIndex() {
+            var userName=$.cookie("userName");
+            if(userName==undefined){
+                window.location.href=ctx+'login';
+                return;
+            }else {
+                window.location.href='article/index'
+            }
+        }
+    </script>
+
+    <script>
         function serchArticle() {
             var name = $('#i_search').val();
 //            var data = {"name":name};
@@ -33,7 +46,7 @@
         <#--<li><a href="lw-index-noslider.html">4. blog-index-noslider</a></li>-->
         <#--</ul>-->
         <#--</li>-->
-            <li><a href="${ctx}/article/index">写文章</a></li>
+            <li><a href="javascript:articleIndex()" id="a_article">写文章</a></li>
             <li><a href="${ctx}/img">图片库</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-right am-form-inline" role="search">

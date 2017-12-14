@@ -188,7 +188,7 @@
             $.post("insert",data,function(result){
                 if(result.resultCode==1){
                     alert("文章上传成功");
-                    window.location.href=ctx+'/';
+                    window.location.href=ctx;
                 }else {
                     alert(result.resultMessage);
                 }

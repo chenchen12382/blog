@@ -5,18 +5,19 @@
 </head>
 <body>
 <header>
-  <div class="log-header">
-      <h1><a href="/">Amaze UI</a> </h1>
-  </div>    
+  <#--<div class="log-header">-->
+      <#--<h1><a href="/">Amaze UI</a> </h1>-->
+  <#--</div>    -->
   <div class="log-re">
-    <button type="button" class="am-btn am-btn-default am-radius log-button">注册</button>
-  </div> 
+      <br>
+      <button type="button" class="am-btn am-btn-danger am-round" id="a_main">回首页</button>
+  </div>
 </header>
 
 <div class="log"> 
   <div class="am-g">
   <div class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered log-content">
-    <h1 class="log-title am-animation-slide-top">陈琛的个人博客</h1>
+    <h1 class="log-title am-animation-slide-top">博客管理员登陆</h1>
     <br>
     <form class="am-form" id="log-form">
       <div class="am-input-group am-radius am-animation-slide-left">       
@@ -30,10 +31,10 @@
       </div>      
       <br>
       <button type="button" id="submitBtn" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay">登 录</button>
-            <p class="am-animation-slide-bottom log-animation-delay"><a href="#">忘记密码?</a></p>
-      <div class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
-      <p>游客登陆</p>
-      <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a>
+            <#--<p class="am-animation-slide-bottom log-animation-delay"><a href="#">忘记密码?</a></p>-->
+      <div >
+          <br>
+
       </div>
     </form>
   </div>
@@ -46,4 +47,14 @@
 
 
 </body>
+
+<script>
+    $(function () {
+        $("#a_main").click(function () {
+
+            window.location.href=ctx;
+        })
+
+    })
+</script>
 </html>

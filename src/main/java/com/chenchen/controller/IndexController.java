@@ -40,7 +40,7 @@ public class IndexController extends BaseController {
 	@Autowired
 	private ArticleDao articleDao;
 	
-	@RequestMapping("index")
+	@RequestMapping("login")
 	public String index() {
 		return "index";
 	}
@@ -102,7 +102,5 @@ public class IndexController extends BaseController {
 	public String imgCtrl(){
 		return "img";
 	}
-
-
 
 }

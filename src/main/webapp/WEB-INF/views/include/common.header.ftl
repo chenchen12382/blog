@@ -25,5 +25,5 @@
 <script src="${ctx}/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script>
-    var ctx = "${ctx}";
+    var ctx = "${ctx}/";
 </script>
