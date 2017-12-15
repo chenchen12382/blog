@@ -9,6 +9,7 @@ import com.chenchen.dto.IndexQuery;
 import com.chenchen.exception.ParamException;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
+import com.chenchen.model.Img;
 import com.chenchen.model.Tag;
 import com.chenchen.utils.CookieUtil;
 import com.chenchen.utils.MD5Util;
@@ -181,6 +182,12 @@ public class ArticleService {
     public PageList<Comment> findCommentByAid(CommentQuery query) {
         PageList<Comment> comments = articleDao.findCommentByAid(query,query.buildPageBounds());
         return  comments;
+
+    }
+
+    public List<Img> findAllImg() {
+        List<Img> imgs = articleDao.findAllImg();
+        return imgs;
 
     }
 }

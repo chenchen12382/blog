@@ -12,7 +12,7 @@
                 window.location.href=ctx+'login';
                 return;
             }else {
-                window.location.href='article/index'
+                window.location.href=ctx+'article/index'
             }
         }
     </script>

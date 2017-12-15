@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd"> -->
 <!DOCTYPE configuration    
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
-    "D://mybatis-3-config.dtd">
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
 	<settings>

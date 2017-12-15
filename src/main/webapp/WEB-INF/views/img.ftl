@@ -12,7 +12,13 @@
 <div class="am-g am-g-fixed blog-fixed blog-content">
     <figure data-am-widget="figure" class="am am-figure am-figure-default "   data-am-figure="{  pureview: 'true' }">
         <div id="container">
-            <div><img src="images/01.jpg"><h3>Agfa</h3></div>
+            <#if imgs?has_content>
+                <#list imgs as img>
+                    <div><img src="${img.img}"><h3>${img.imgName}</h3></div>
+                </#list>
+
+            </#if>
+
             <div><img src="images/02.jpg"><h3>Auto</h3></div>
             <div><img src="images/03.jpg"><h3>Bald eagle</h3></div>
             <div><img src="images/04.jpg"><h3>Black swan</h3></div>

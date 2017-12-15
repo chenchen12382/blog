@@ -5,6 +5,7 @@ import com.chenchen.dto.CommentQuery;
 import com.chenchen.dto.IndexQuery;
 import com.chenchen.model.Article;
 import com.chenchen.model.Comment;
+import com.chenchen.model.Img;
 import com.chenchen.model.Tag;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
@@ -54,4 +55,7 @@ public interface ArticleDao {
 
     @Insert("insert into t_img (img,img_name,create_date,update_date) values(#{img},#{fileName},now(),now() )")
     void insertImg(@Param("img") String img, @Param("fileName") String fileName);
+
+    @Select("select id,img,img_name,create_date,update_date from t_img where 1=1")
+    List<Img> findAllImg();
 }

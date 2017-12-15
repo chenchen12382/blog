@@ -6,10 +6,7 @@ import com.chenchen.base.ResultInfo;
 import com.chenchen.dao.ArticleDao;
 import com.chenchen.dto.CommentQuery;
 import com.chenchen.dto.IndexQuery;
-import com.chenchen.model.Article;
-import com.chenchen.model.Comment;
-import com.chenchen.model.Tag;
-import com.chenchen.model.User;
+import com.chenchen.model.*;
 import com.chenchen.service.ArticleService;
 import com.chenchen.service.UserService;
 import com.chenchen.utils.CookieUtil;
@@ -99,7 +96,9 @@ public class IndexController extends BaseController {
 	}
 
 	@RequestMapping("img")
-	public String imgCtrl(){
+	public String imgCtrl(Model model){
+		List<Img> imgs= articleService.findAllImg();
+		model.addAttribute("imgs",imgs);
 		return "img";
 	}
 
