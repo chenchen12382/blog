@@ -24,7 +24,7 @@
           </p>
         </div>        
         <div class="am-article-bd">
-        <img src="${article.img?default("${ctx}/images/01.jpg")}" alt="" class="blog-entry-img blog-article-margin">
+        <#--<img src="${article.img?default("/images/01.jpg")}" alt="" class="blog-entry-img blog-article-margin">-->
             <p>
                 ${article.content}
             </p>

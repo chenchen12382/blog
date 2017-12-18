@@ -153,7 +153,7 @@
 
 
 
-        editor.customConfig.uploadImgServer = '/article/uploadImg';
+        editor.customConfig.uploadImgServer = ctx+'/article/uploadImg';
         editor.customConfig.uploadFileName = 'uploadImg';
         editor.customConfig.uploadImgHooks = {
             success: function (xhr, editor, result) {

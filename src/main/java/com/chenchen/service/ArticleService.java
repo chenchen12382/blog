@@ -48,7 +48,7 @@ public class ArticleService {
             throw new ParamException("图片为空!");
         }
 
-        String path = request.getSession( ).getServletContext( ).getRealPath( "/" )+"/upload";
+        String path = request.getServletContext().getRealPath("/")+"/upload";
 
 //        System.out.println(path);
         String time=System.currentTimeMillis()+"";
