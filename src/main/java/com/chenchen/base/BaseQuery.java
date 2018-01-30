@@ -5,7 +5,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 public class BaseQuery {
 	
 	private static final Integer PAGE = 1;
-	private static final Integer ROWS = 2;
+	private static final Integer ROWS = 10;
 	private Integer page;
 	private Integer rows;
 	

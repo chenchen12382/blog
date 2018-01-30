@@ -31,14 +31,14 @@
         </div>
       </article>
         <ul class="am-pagination blog-article-margin">
-            <#if pre?has_content>
-                <li class="am-pagination-prev"><a href="${ctx}/a?id=${pre}" class="">上一篇</a></li>
+            <#if next?has_content>
+                <li class="am-pagination-prev"><a href="${ctx}/a?id=${next}" class="">上一篇</a></li>
             <#else >
                 <li class="am-disabled"><a href="#" class="">上一篇</a></li>
             </#if>
 
-            <#if next?has_content>
-                <li class="am-pagination-next"><a href="${ctx}/a?id=${next}">下一篇</a></li>
+            <#if pre?has_content>
+                <li class="am-pagination-next"><a href="${ctx}/a?id=${pre}">下一篇</a></li>
             <#else >
                 <li class="am-disabled"><a href="#" class="">下一篇</a></li>
             </#if>
@@ -71,7 +71,7 @@
                             <!--<h3 class="am-comment-title">评论标题</h3>-->
                             <div class="am-comment-meta">
                                 <a href="#" class="am-comment-author">${item.nikeName}</a>
-                                评论于 <time datetime="${item.createDate?date}" title="${item.createDate?date}">2014-7-12 15:30</time>
+                                评论于 <time datetime="${item.createDate?date}" title="${item.createDate?date}">${item.createDate?datetime}</time>
                             </div>
                         </header>
 

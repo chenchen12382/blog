@@ -148,7 +148,17 @@ public class ArticleService {
         AssertUtil.isNotEmpty(article.getIntro(),"请填写简介");
         AssertUtil.isNotEmpty(article.getContent(),"请填写正文");
         AssertUtil.isNotEmpty(article.getTypeId(),"请选择标签");
+        //设置img
+        Integer v = (int)(Math.random() * 30);
+        String temp;
+        if(v<10){
+             temp = "0"+v;
+        }else{
+            temp=""+v;
+        }
+        String result = "/images/"+temp+".jpg";
 
+        article.setImg(result);
         articleDao.insert(article);
 
     }

@@ -8,6 +8,7 @@ import com.chenchen.dto.CommentQuery;
 import com.chenchen.dto.IndexQuery;
 import com.chenchen.model.*;
 import com.chenchen.service.ArticleService;
+import com.chenchen.service.MapService;
 import com.chenchen.service.UserService;
 import com.chenchen.utils.CookieUtil;
 import com.chenchen.utils.LoginUserUtil;
@@ -36,6 +37,9 @@ public class IndexController extends BaseController {
 
 	@Autowired
 	private ArticleDao articleDao;
+
+	@Autowired
+	private MapService mapService;
 	
 	@RequestMapping("login")
 	public String index() {
@@ -101,5 +105,14 @@ public class IndexController extends BaseController {
 		model.addAttribute("imgs",imgs);
 		return "img";
 	}
+
+
+	@RequestMapping("test")
+	@ResponseBody
+	public ResultInfo test(){
+		mapService.test();
+		return success("操作成功！");
+	}
+
 
 }
